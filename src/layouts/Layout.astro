@@ -1,44 +1,23 @@
----
-import '../styles/global.css';
-
-import { Font } from 'astro:assets';
-
-const { title } = Astro.props;
----
-
-<html lang="en" class="dark h-full">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Kirill Siukhin (aka zorreth) personal page. Social links, contacts, projects & maybe more."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="zorreth" />
-    <meta
-      property="og:description"
-      content="Kirill Siukhin (aka zorreth) personal page. Social links, contacts, projects & maybe more."
-    />
-    <meta property="og:image" content="https://zorreth.com/og.jpg" />
-    <meta property="og:site_name" content="zorreth.com" />
-    <meta name="theme-color" content="#16213E" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <Font cssVariable="--font-dm-sans" />
-    <Font cssVariable="--font-just-another-hand" />
-    <title>{title}</title>
-
-    <script is:inline>
-      const localTheme = localStorage.getItem('theme');
-
-      if (localTheme && localTheme === 'light') {
-        document.documentElement.classList.remove('dark');
-      }
-    </script>
-  </head>
-
-  <body class="text-black dark:text-white antialiased">
-    <slot />
-  </body>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro Basics</title>
+	</head>
+	<body>
+		<slot />
+	</body>
 </html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
