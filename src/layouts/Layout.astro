@@ -1,23 +1,101 @@
-<!doctype html>
+---
+import { Font, Image } from 'astro:assets';
+import Sunglasses from '../components/icons/Sunglasses.astro';
+
+import catImage from '../assets/cat.png';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  {
+    name: '/about',
+    href: '/',
+  },
+  {
+    name: '/blog',
+    href: '/blog',
+  },
+];
+---
+
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <Font cssVariable="--font-mono" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <Image src={catImage} class="avatar" alt="A cat." />
+      <nav>
+        {navLinks.map(({ name, href }) => (
+          <a href={href} class={currentPath === href ? 'active' : ''}>
+            {name}
+          </a>
+        ))}
+      </nav>
+
+      <button class="mode-btn">
+        <Sunglasses />
+      </button>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  body {
+    margin: 0;
+    padding: 4rem 8rem;
+    font-family: var(--font-mono);
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    margin-bottom: 4rem;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  a.active {
+    color: hsl(150, 100%, 40%);
+  }
+
+  nav {
+    display: flex;
+    gap: 24px;
+  }
+
+  .avatar {
+    border-radius: 100px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .mode-btn {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+  }
 </style>
