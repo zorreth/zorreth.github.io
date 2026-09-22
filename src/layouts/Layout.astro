@@ -36,7 +36,7 @@ const { title, description } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <Font cssVariable="--font-mono" />
-    <title>{title} @ zorreth.com</title>
+    <title>{title} – zorreth</title>
   </head>
   <body>
     <Header />
@@ -78,8 +78,8 @@ const { title, description } = Astro.props;
     background-color: var(--color-bg);
     color: var(--color-text);
     transition:
-      300ms background-color,
-      300ms color;
+      0.3s background-color,
+      0.3s color;
   }
 
   main {
@@ -95,9 +95,27 @@ const { title, description } = Astro.props;
     color: var(--color-link-hover);
   }
 
+  hr {
+    border: 1px solid var(--color-bg-muted);
+    transition: 0.3s border;
+  }
+
+  button {
+    display: flex;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: var(--color-link);
+  }
+
+  button:hover {
+    color: var(--color-link-hover);
+  }
+
   .highlight {
     background-color: var(--color-bg-muted);
-    transition: 300ms background-color;
+    transition: 0.3s background-color;
   }
 
   @media screen and (max-width: 1000px) {

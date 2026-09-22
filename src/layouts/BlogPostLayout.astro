@@ -1,0 +1,63 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate } from '../utils/formatDate';
+import Layout from './Layout.astro';
+import Link from '../components/icons/Link.astro';
+import Tooltip from '../components/Tooltip.astro';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+  <a href="/blog">&larr; ../</a>
+
+  <div class="title">
+    <h1>{post.data.title}</h1>
+
+    <Tooltip text="Copy link">
+      <button id="copy-link" aria-label="Copy link">
+        <Link />
+      </button>
+    </Tooltip>
+  </div>
+
+  <p>
+    By {post.data.author} &bull; {formatDate(post.data.pubDate)} &bull; {post.data.readTime} read
+  </p>
+
+  <hr />
+
+  <slot />
+</Layout>
+
+<script>
+  const copyButton = document.getElementById('copy-link');
+
+  copyButton?.addEventListener('click', () => {
+    window.navigator.clipboard.writeText(window.location.href);
+
+    const tooltip = copyButton.parentElement?.querySelector('[role="tooltip"]');
+
+    if (tooltip) {
+      tooltip.textContent = 'Link copied!';
+    }
+
+    setTimeout(() => {
+      if (tooltip) {
+        tooltip.textContent = 'Copy link';
+      }
+    }, 2000);
+  });
+</script>
+
+<style>
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+</style>

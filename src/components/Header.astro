@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import Tooltip from './Tooltip.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import catImage from '../assets/cat.png';
 
@@ -28,7 +29,9 @@ const navLinks = [
     ))}
   </nav>
 
-  <ThemeToggle />
+  <Tooltip text="Toggle theme">
+    <ThemeToggle />
+  </Tooltip>
 </header>
 
 <style>
