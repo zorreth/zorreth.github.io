@@ -3,8 +3,6 @@ import { Image } from 'astro:assets';
 import ThemeToggle from './ThemeToggle.astro';
 import catImage from '../assets/cat.png';
 
-const currentPath = Astro.url.pathname;
-
 const navLinks = [
   {
     name: '/about',
@@ -26,9 +24,7 @@ const navLinks = [
 
   <nav>
     {navLinks.map(({ name, href }) => (
-      <a href={href} class={currentPath === href ? 'active' : ''}>
-        {name}
-      </a>
+      <a href={href}>{name}</a>
     ))}
   </nav>
 
@@ -39,17 +35,17 @@ const navLinks = [
   header {
     display: flex;
     align-items: center;
-    gap: 64px;
+    gap: 4rem;
   }
 
   nav {
     display: flex;
-    gap: 24px;
+    gap: 1.5rem;
   }
 
   .avatar {
-    border-radius: 100px;
-    width: 48px;
-    height: 48px;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 </style>

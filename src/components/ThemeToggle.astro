@@ -1,11 +1,11 @@
 ---
 import Sunglasses from './icons/Sunglasses.astro';
-import Lightbulb from './icons/Lightbulb.astro';
+import Sun from './icons/Sun.astro';
 ---
 
 <button id="theme-toggle" aria-label="Toggle theme">
   <Sunglasses class="glasses" />
-  <Lightbulb class="bulb" />
+  <Sun class="sun" />
 </button>
 
 <script is:inline>
@@ -36,18 +36,18 @@ import Lightbulb from './icons/Lightbulb.astro';
   }
 
   :global(.glasses) {
-    display: block;
+    display: none;
   }
 
-  :global(.bulb) {
-    display: none;
+  :global(.sun) {
+    display: block;
   }
 
   :global(.dark) :global(.glasses) {
-    display: none;
+    display: block;
   }
 
-  :global(.dark) :global(.bulb) {
-    display: block;
+  :global(.dark) :global(.sun) {
+    display: none;
   }
 </style>
