@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import { formatDate } from '../../utils/formatDate';
+import Layout from '../../layouts/Layout.astro';
+
+const posts = await getCollection('blog');
+---
+
+<Layout title="Blog" description="I'm Kirill, and this is my personal blog.">
+  <h1>Blog Posts</h1>
+
+  <ul class="posts">
+    {posts.map((post) => (
+      <li class="post">
+        <a href={`/blog/${post.id}`}>
+          <h2>{post.data.title}</h2>
+        </a>
+
+        <p>
+          {post.data.author} &bull; {formatDate(post.data.pubDate)} &bull; {post.data.readTime} read
+        </p>
+
+        <p>{post.data.description}</p>
+      </li>
+    ))}
+  </ul>
+</Layout>
+
+<style>
+  .posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+</style>

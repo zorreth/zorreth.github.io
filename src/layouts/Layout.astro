@@ -1,44 +1,126 @@
 ---
-import '../styles/global.css';
-
 import { Font } from 'astro:assets';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
-const { title } = Astro.props;
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
 ---
 
-<html lang="en" class="dark h-full">
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Kirill Siukhin (aka zorreth) personal page. Social links, contacts, projects & maybe more."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="zorreth" />
-    <meta
-      property="og:description"
-      content="Kirill Siukhin (aka zorreth) personal page. Social links, contacts, projects & maybe more."
-    />
-    <meta property="og:image" content="https://zorreth.com/og.jpg" />
-    <meta property="og:site_name" content="zorreth.com" />
-    <meta name="theme-color" content="#16213E" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <Font cssVariable="--font-dm-sans" />
-    <Font cssVariable="--font-just-another-hand" />
-    <title>{title}</title>
-
     <script is:inline>
-      const localTheme = localStorage.getItem('theme');
+      const theme = (() => {
+        const localStorageTheme = localStorage?.getItem('theme') ?? '';
+        if (['dark', 'light'].includes(localStorageTheme)) {
+          return localStorageTheme;
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
 
-      if (localTheme && localTheme === 'light') {
+      if (theme === 'light') {
         document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
       }
-    </script>
-  </head>
 
-  <body class="text-black dark:text-white antialiased">
-    <slot />
+      window.localStorage.setItem('theme', theme);
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <Font cssVariable="--font-mono" />
+    <title>{title} – zorreth</title>
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
   </body>
 </html>
+
+<style is:global>
+  :root {
+    --color-bg: hsl(0, 0%, 90%);
+    --color-bg-muted: hsl(0, 0%, 80%);
+    --color-text: hsl(0, 0%, 0%);
+    --color-link: hsl(200, 100%, 45%);
+    --color-link-hover: hsl(200, 100%, 35%);
+  }
+
+  :root.dark {
+    --color-bg: hsl(0, 0%, 10%);
+    --color-bg-muted: hsl(0, 0%, 20%);
+    --color-text: hsl(0, 0%, 100%);
+    --color-link: hsl(140, 70%, 45%);
+    --color-link-hover: hsl(140, 70%, 35%);
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    min-height: 100vh;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 4rem 8rem;
+    font-family: var(--font-mono);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition:
+      0.3s background-color,
+      0.3s color;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-link-hover);
+  }
+
+  hr {
+    border: 1px solid var(--color-bg-muted);
+    transition: 0.3s border;
+  }
+
+  button {
+    display: flex;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: var(--color-link);
+  }
+
+  button:hover {
+    color: var(--color-link-hover);
+  }
+
+  .highlight {
+    background-color: var(--color-bg-muted);
+    transition: 0.3s background-color;
+  }
+
+  @media screen and (max-width: 1000px) {
+    body {
+      padding: 2rem;
+    }
+  }
+</style>

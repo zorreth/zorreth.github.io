@@ -1,148 +1,75 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import ThemeToggle from '../components/ThemeToggle.astro';
-import AnimatedGradient from '../components/AnimatedGradient.astro';
-
-import TelegramIcon from '../components/icons/TelegramIcon.astro';
-import DiscordIcon from '../components/icons/DiscordIcon.astro';
-import GitHubIcon from '../components/icons/GitHubIcon.astro';
-
-const links = [
-  {
-    name: 'Telegram',
-    href: 'https://t.me/zorreth',
-    bg: '#0088cc',
-    fg: '#fff',
-    icon: TelegramIcon,
-  },
-  {
-    name: 'Discord',
-    href: 'https://discord.com/users/1006899291824078858',
-    bg: '#5865f2',
-    fg: '#fff',
-    icon: DiscordIcon,
-  },
-  {
-    name: 'GitHub',
-    href: 'https://github.com/zorreth',
-    bg: '#000',
-    fg: '#fff',
-    icon: GitHubIcon,
-  },
-];
-
-const projects = [
-  {
-    name: 'zorreth.com',
-    description: 'The personal website you are visiting right now',
-    links: [{ name: 'GitHub', href: 'https://github.com/zorreth/zorreth.github.io' }],
-    tags: ['astro'],
-  },
-  {
-    name: 'balabol.cc',
-    description: 'The easiest social landing page hosting and link shortener',
-    links: [{ name: 'GitHub', href: 'https://github.com/zorreth/balabol.cc' }],
-    tags: ['nextjs', 'hono', 'drizzle', 'postgres'],
-  },
-  {
-    name: 'Cubean',
-    description: 'Speedcubing timer, social platform and progress tracker',
-    links: [{ name: 'GitHub', href: 'https://github.com/zorreth/cubean' }],
-    tags: ['nextjs', 'shadcn-ui', 'fastify', 'drizzle', 'postgres'],
-  },
-  {
-    name: 'Space',
-    description: 'The infinite pixel art canvas',
-    links: [{ name: 'GitHub', href: 'https://github.com/zorreth/space' }],
-    tags: ['rust', 'axum', 'sqlx', 'postgres'],
-  },
-  {
-    name: 'Cheburek',
-    description: 'Text generation bot for the Discord servers',
-    links: [{ name: 'GitHub', href: 'https://github.com/zorreth/cheburek' }],
-    tags: ['discord.js', 'sqlite'],
-  },
-  {
-    name: 'Eloquent',
-    description: 'Minecraft mod that gives every mob a unique AI identity, memory, and voice',
-    links: [{ name: 'GitHub', href: 'https://github.com/zorreth/eloquent' }],
-    tags: ['fabric'],
-  },
-];
+import photo from '../assets/photo.jpg';
 ---
 
-<Layout title="zorreth">
-  <AnimatedGradient>
-    <header class="container mx-auto flex justify-between items-center p-4">
-      <a href="/" class="transition hover:scale-105 active:scale-95 text-5xl font-display">
-        zorreth
-      </a>
-      <ThemeToggle />
-    </header>
+<Layout
+  title="Home"
+  description="Hi! My name is Kirill, and I am a full-stack developer, focused on building a high quality web applications of any size and purpose. Here you can find my bio, blog and the ways to reach me."
+>
+  <section class="hero">
+    <div class="about">
+      <h1>Hi, my name is Kirill.</h1>
 
-    <main class="transition duration-500 ease-in-out flex flex-col">
-      <section class="container mx-auto my-12 text-center" id="about">
-        <h1
-          class="text-neutral-800 dark:text-white font-bold text-2xl md:text-4xl transition-colors p-4"
-        >
-          Hi there! My name is Kirill Siukhin
-        </h1>
-        <p class="text-neutral-800 dark:text-white text-xl transition-colors p-4">
-          I enjoy web development, music, speedcubing and photography
-        </p>
-      </section>
+      <p>
+        I am a full-stack developer, focused on building a high quality web applications of any size
+        and purpose. Currently on a third year in IT College in Yekateriburg, Russia.
+      </p>
 
-      <section class="flex flex-col items-center mb-16 gap-4">
-        {
-          links.map((link) => {
-            const Icon = link.icon;
+      <p>In my free time I do photography, make music, and speedcube.</p>
+    </div>
 
-            return (
-              <a
-                href={link.href}
-                style={`background-color: ${link.bg}; color: ${link.fg};`}
-                class="relative text-center text-neutral-800 p-3 rounded-full w-80 font-bold transition-transform shadow hover:scale-105 active:scale-100"
-              >
-                <Icon class="absolute" />
-                {link.name}
-              </a>
-            );
-          })
-        }
-      </section>
+    <Image src={photo} class="photo" alt="Myself." loading="eager" />
+  </section>
 
-      <section class="flex flex-col items-center gap-4 mb-24">
-        <h2 class="font-bold text-3xl">Things I make</h2>
+  <section>
+    <h2>Experiences</h2>
 
-        <div class="container px-4 grid lg:grid-cols-2 xl:grid-cols-3 gap-4">
-          {
-            projects.map((p) => (
-              <div class="p-4 transition-transform hover:scale-102 bg-white/15 border-2 border-white/20 rounded-lg">
-                <h3 class="font-bold text-xl">{p.name}</h3>
-                <p class="mb-4">{p.description}</p>
-                <div class="flex gap-2 mb-4">
-                  {p.links.map((l) => (
-                    <a href={l.href} class="font-bold hover:underline">
-                      {l.name}
-                    </a>
-                  ))}
-                </div>
-                <div class="flex flex-wrap gap-2">
-                  {p.tags.map((t) => (
-                    <span class="rounded-full bg-white/20 px-2 py-0.5 text-sm">{t}</span>
-                  ))}
-                </div>
-              </div>
-            ))
-          }
-        </div>
-      </section>
+    <p>
+      I worked in a team for the college projects and made some solo projects using the modern web
+      development technologies like Next.js, Astro, TailwindCSS, shadcn-ui, Bun, Fastify, Hono,
+      Drizzle ORM, and many more.
+    </p>
 
-      <footer class="text-center pb-16">
-        <p class="text-neutral-600 dark:text-neutral-400 transition-colors">
-          &copy; 2026 Kirill Siukhin. All rights reserved.
-        </p>
-      </footer>
-    </main>
-  </AnimatedGradient>
+    <ul>
+      <li>
+        <a href="https://zorreth.com">zorreth.com</a> – My personal website and blog.
+      </li>
+      <li>
+        <a href="https://github.com/zorreth/balabol.cc">balabol.cc</a> – A free and open-source
+        link-in-bio platform.
+      </li>
+      <li>
+        <a href="https://github.com/SoftTrackApp/web">SoftTrack (frontend)</a> –
+        Organization-indepent soft skill tracker.
+      </li>
+    </ul>
+  </section>
 </Layout>
+
+<style>
+  .about {
+    max-width: 48rem;
+  }
+
+  .hero {
+    display: flex;
+    justify-content: center;
+    gap: 8rem;
+  }
+
+  .photo {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+  }
+
+  @media screen and (max-width: 900px) {
+    .hero {
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 2rem;
+    }
+  }
+</style>

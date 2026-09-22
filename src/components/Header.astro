@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import Tooltip from './Tooltip.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import catImage from '../assets/cat.png';
+
+const navLinks = [
+  {
+    name: '/about',
+    href: '/',
+  },
+  {
+    name: '/blog',
+    href: '/blog',
+  },
+  {
+    name: '/contact',
+    href: '/contact',
+  },
+];
+---
+
+<header>
+  <Image src={catImage} class="avatar" alt="A cat." loading="eager" />
+
+  <nav>
+    {navLinks.map(({ name, href }) => (
+      <a href={href}>{name}</a>
+    ))}
+  </nav>
+
+  <Tooltip text="Toggle theme">
+    <ThemeToggle />
+  </Tooltip>
+</header>
+
+<style>
+  header {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .avatar {
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  @media screen and (max-width: 500px) {
+    header {
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+  }
+</style>

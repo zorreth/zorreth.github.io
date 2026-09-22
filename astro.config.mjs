@@ -1,23 +1,13 @@
 // @ts-check
-import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://zorreth.com',
-  vite: {
-    plugins: [tailwindcss()],
-  },
   fonts: [
     {
-      provider: fontProviders.fontsource(),
-      name: 'DM Sans',
-      cssVariable: '--font-dm-sans',
-    },
-    {
-      provider: fontProviders.fontsource(),
-      name: 'Just Another Hand',
-      cssVariable: '--font-just-another-hand',
+      provider: fontProviders.google(),
+      name: 'Roboto Mono',
+      cssVariable: '--font-mono',
     },
   ],
 });

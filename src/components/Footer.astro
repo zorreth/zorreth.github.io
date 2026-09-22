@@ -1,0 +1,42 @@
+---
+import Telegram from './icons/Telegram.astro';
+import GitHub from './icons/GitHub.astro';
+import Discord from './icons/Discord.astro';
+---
+
+<footer>
+  <div class="socials">
+    <a href="https://t.me/zorreth">
+      <Telegram />
+    </a>
+
+    <a href="https://github.com/zorreth">
+      <GitHub />
+    </a>
+
+    <a href="https://discord.com/users/1006899291824078858">
+      <Discord />
+    </a>
+  </div>
+
+  <span>
+    Copyright &copy; 2026 Kirill Siukhin. Source code is on{' '}
+    <a href="https://github.com/zorreth/zorreth.github.io">GitHub</a>.
+  </span>
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    font-size: 0.8em;
+  }
+
+  .socials {
+    display: flex;
+    gap: 1rem;
+  }
+</style>
