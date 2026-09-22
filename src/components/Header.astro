@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import Sunglasses from './icons/Sunglasses.astro';
+import ThemeToggle from './ThemeToggle.astro';
 import catImage from '../assets/cat.png';
 
 const currentPath = Astro.url.pathname;
@@ -32,9 +32,7 @@ const navLinks = [
     ))}
   </nav>
 
-  <button class="mode-btn">
-    <Sunglasses />
-  </button>
+  <ThemeToggle />
 </header>
 
 <style>
@@ -42,7 +40,6 @@ const navLinks = [
     display: flex;
     align-items: center;
     gap: 64px;
-    margin-bottom: 4rem;
   }
 
   nav {
@@ -54,13 +51,5 @@ const navLinks = [
     border-radius: 100px;
     width: 48px;
     height: 48px;
-  }
-
-  .mode-btn {
-    background-color: transparent;
-    border: none;
-    margin: 0;
-    padding: 0;
-    cursor: pointer;
   }
 </style>

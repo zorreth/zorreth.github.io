@@ -13,6 +13,26 @@ const { title, description } = Astro.props;
 
 <html lang="en">
   <head>
+    <script is:inline>
+      const theme = (() => {
+        const localStorageTheme = localStorage?.getItem('theme') ?? '';
+        if (['dark', 'light'].includes(localStorageTheme)) {
+          return localStorageTheme;
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+
+      window.localStorage.setItem('theme', theme);
+    </script>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <Font cssVariable="--font-mono" />
@@ -32,19 +52,32 @@ const { title, description } = Astro.props;
 <style is:global>
   :root {
     --color-bg: hsl(0, 0%, 90%);
+    --color-text: hsl(0, 0%, 0%);
     --color-link: hsl(200, 100%, 35%);
-    --color-link-active: hsl(200, 100%, 55%);
+    --color-link-hover: hsl(200, 100%, 55%);
+  }
+
+  :root.dark {
+    --color-bg: hsl(0, 0%, 10%);
+    --color-text: hsl(0, 0%, 100%);
+    --color-link: hsl(140, 70%, 45%);
+    --color-link-hover: hsl(140, 70%, 65%);
   }
 
   body {
     display: flex;
     flex-direction: column;
+    gap: 4rem;
     min-height: 100vh;
     box-sizing: border-box;
     margin: 0;
     padding: 4rem 8rem;
     font-family: var(--font-mono);
     background-color: var(--color-bg);
+    color: var(--color-text);
+    transition:
+      300ms background-color,
+      300ms color;
   }
 
   main {
@@ -57,6 +90,6 @@ const { title, description } = Astro.props;
   }
 
   a:hover {
-    color: var(--color-link-active);
+    color: var(--color-link-hover);
   }
 </style>
