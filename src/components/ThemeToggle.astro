@@ -35,19 +35,19 @@ import Lightbulb from './icons/Lightbulb.astro';
     fill: var(--color-link-hover);
   }
 
-  .glasses {
-    display: flex;
+  :global(.glasses) {
+    display: block;
   }
 
-  .bulb {
+  :global(.bulb) {
     display: none;
   }
 
-  :global(.dark) .glasses {
+  :global(.dark) :global(.glasses) {
     display: none;
   }
 
-  :global(.dark) .bulb {
-    display: flex;
+  :global(.dark) :global(.bulb) {
+    display: block;
   }
 </style>
