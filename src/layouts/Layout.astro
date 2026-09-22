@@ -36,7 +36,7 @@ const { title, description } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <Font cssVariable="--font-mono" />
-    <title>{title}</title>
+    <title>{title} @ zorreth.com</title>
   </head>
   <body>
     <Header />
@@ -52,6 +52,7 @@ const { title, description } = Astro.props;
 <style is:global>
   :root {
     --color-bg: hsl(0, 0%, 90%);
+    --color-bg-muted: hsl(0, 0%, 80%);
     --color-text: hsl(0, 0%, 0%);
     --color-link: hsl(200, 100%, 35%);
     --color-link-hover: hsl(200, 100%, 55%);
@@ -59,6 +60,7 @@ const { title, description } = Astro.props;
 
   :root.dark {
     --color-bg: hsl(0, 0%, 10%);
+    --color-bg-muted: hsl(0, 0%, 20%);
     --color-text: hsl(0, 0%, 100%);
     --color-link: hsl(140, 70%, 45%);
     --color-link-hover: hsl(140, 70%, 65%);
@@ -91,5 +93,10 @@ const { title, description } = Astro.props;
 
   a:hover {
     color: var(--color-link-hover);
+  }
+
+  .highlight {
+    background-color: var(--color-bg-muted);
+    transition: 300ms background-color;
   }
 </style>
