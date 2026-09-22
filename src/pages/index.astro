@@ -1,20 +1,57 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import photo from '../assets/photo.jpg';
+
+const projects = [{}];
 ---
 
 <Layout
   title="Home @ zorreth.com"
-  description="Hi there! My name is Kirill Siukhin, I am a full-stack developer."
+  description="Hi! My name is Kirill, and I am a full-stack developer, focused on building a high quality web applications of any size and purpose. Here you can find my bio, blog and the ways to reach me."
 >
-  <h1>Hi! My name is Kirill.</h1>
-  <p class="about">
-    I am a full-stack developer, focused on building a high quality web applications of any size and
-    purpose.
-  </p>
+  <section class="hero">
+    <div class="about">
+      <h1>Hi, my name is Kirill.</h1>
+
+      <p>
+        I am a full-stack developer, focused on building a high quality web applications of any size
+        and purpose. Currently on a third year in IT College in Yekateriburg, Russia.
+      </p>
+
+      <p>In my freetime I do photography, make music, and speedcube.</p>
+    </div>
+
+    <Image src={photo} class="photo" alt="Myself." loading="eager" />
+  </section>
+
+  <section>
+    <h2>Experiences</h2>
+
+    <p>
+      I worked in a team for the college projects and made some solo projects using the modern web
+      development technologies like Next.js, Astro, TailwindCSS, shadcn-ui, Bun, Fastify, Hono,
+      Drizzle ORM, and many more.
+    </p>
+
+    <div class="project-list"></div>
+  </section>
 </Layout>
 
 <style>
   .about {
     max-width: 48rem;
+  }
+
+  .hero {
+    display: flex;
+    justify-content: center;
+    gap: 8rem;
+  }
+
+  .photo {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
   }
 </style>
