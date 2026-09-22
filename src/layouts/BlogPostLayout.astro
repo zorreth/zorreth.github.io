@@ -37,8 +37,12 @@ const { post } = Astro.props;
 <script>
   const copyButton = document.getElementById('copy-link');
 
-  copyButton?.addEventListener('click', () => {
-    window.navigator.clipboard.writeText(window.location.href);
+  copyButton?.addEventListener('click', async () => {
+    try {
+      await window.navigator.clipboard.writeText(window.location.href);
+    } catch {
+      return;
+    }
 
     const tooltip = copyButton.parentElement?.querySelector('[role="tooltip"]');
 
