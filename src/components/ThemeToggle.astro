@@ -22,11 +22,8 @@ import Lightbulb from './icons/Lightbulb.astro';
 
 <style>
   #theme-toggle {
-    position: relative;
     background-color: transparent;
     border: none;
-    margin: 0;
-    padding: 0;
     cursor: pointer;
   }
 
@@ -38,26 +35,19 @@ import Lightbulb from './icons/Lightbulb.astro';
     fill: var(--color-link-hover);
   }
 
-  .glasses,
-  .bulb {
-    position: absolute;
-    margin: auto;
-    inset: 0;
-  }
-
   .glasses {
-    opacity: 1;
+    display: flex;
   }
 
   .bulb {
-    opacity: 0;
+    display: none;
   }
 
   :global(.dark) .glasses {
-    opacity: 0;
+    display: none;
   }
 
   :global(.dark) .bulb {
-    opacity: 1;
+    display: flex;
   }
 </style>
