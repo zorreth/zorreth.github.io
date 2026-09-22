@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+import Sunglasses from './icons/Sunglasses.astro';
+import catImage from '../assets/cat.png';
+
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  {
+    name: '/about',
+    href: '/',
+  },
+  {
+    name: '/blog',
+    href: '/blog',
+  },
+  {
+    name: '/contact',
+    href: '/contact',
+  },
+];
+---
+
+<header>
+  <Image src={catImage} class="avatar" alt="A cat." />
+
+  <nav>
+    {navLinks.map(({ name, href }) => (
+      <a href={href} class={currentPath === href ? 'active' : ''}>
+        {name}
+      </a>
+    ))}
+  </nav>
+
+  <button class="mode-btn">
+    <Sunglasses />
+  </button>
+</header>
+
+<style>
+  header {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    margin-bottom: 4rem;
+  }
+
+  nav {
+    display: flex;
+    gap: 24px;
+  }
+
+  .avatar {
+    border-radius: 100px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .mode-btn {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+</style>
