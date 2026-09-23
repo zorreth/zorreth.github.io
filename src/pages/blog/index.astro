@@ -11,10 +11,10 @@ const posts = await getCollection('blog');
 
   <ul class="posts">
     {posts.map((post) => (
-      <li class="post">
-        <a href={`/blog/${post.id}`}>
-          <h2>{post.data.title}</h2>
-        </a>
+      <li>
+        <h2>
+          <a href={`/blog/${post.id}`}>{post.data.title}</a>
+        </h2>
 
         <p>
           {post.data.author} &bull; {formatDate(post.data.pubDate)} &bull; {post.data.readTime} read
