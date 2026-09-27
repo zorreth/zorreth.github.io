@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
-
 import sitemap from '@astrojs/sitemap';
+import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,5 +14,5 @@ export default defineConfig({
       weights: ['400', '700'],
     },
   ],
-  integrations: [sitemap()],
+  integrations: [sitemap(), partytown()],
 });
