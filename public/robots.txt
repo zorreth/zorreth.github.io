@@ -1,0 +1,4 @@
+Uset-agent: *
+Allow: /
+
+Sitemap: https://zorreth.com/sitemap-index.xml
