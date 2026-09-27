@@ -9,7 +9,6 @@ const blog = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date(),
     author: z.string(),
-    readTime: z.string(),
   }),
 });
 

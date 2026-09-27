@@ -3,7 +3,6 @@ title: 'New Website'
 description: 'Introduction for the new website and description of the technology stack that runs it.'
 pubDate: 2026-09-22
 author: 'Kirill Siukhin'
-readTime: '1 minute'
 ---
 
 **Hi there everybody!**
