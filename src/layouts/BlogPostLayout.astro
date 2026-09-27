@@ -11,8 +11,6 @@ interface Props {
 }
 
 const { post } = Astro.props;
-
-const readTime = post.body ? getReadTime(post.body) : null;
 ---
 
 <Layout title={post.data.title} description={post.data.description}>
@@ -29,8 +27,7 @@ const readTime = post.body ? getReadTime(post.body) : null;
   </div>
 
   <p>
-    By {post.data.author} &bull; {formatDate(post.data.pubDate)} &bull;{' '}
-    {readTime && `${readTime} minute${readTime > 1 ? 's' : ''} read`}
+    By {post.data.author} &bull; {formatDate(post.data.pubDate)} &bull; {getReadTime(post.body)}
   </p>
 
   <hr />
