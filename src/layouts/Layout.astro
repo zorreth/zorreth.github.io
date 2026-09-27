@@ -83,13 +83,17 @@ const { title, description } = Astro.props;
     --color-link-hover: hsl(140, 70%, 35%);
   }
 
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
   body {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
-    min-height: 100vh;
     box-sizing: border-box;
-    margin: 0;
     padding: 4rem 8rem;
     font-family: var(--font-mono);
     background-color: var(--color-bg);

@@ -1,6 +1,10 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
-import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
+import Link from '../../components/icons/Link.astro';
+import Tooltip from '../../components/Tooltip.astro';
+import Layout from '../../layouts/Layout.astro';
+import { formatDate } from '../../utils/formatDate';
+import { getReadTime } from '../../utils/getReadTime';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -15,6 +19,56 @@ const post = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BlogPostLayout post={post}>
+<Layout title={post.data.title} description={post.data.description}>
+  <a href="/blog">&larr; ../</a>
+
+  <div class="title">
+    <h1>{post.data.title}</h1>
+
+    <Tooltip text="Copy link">
+      <button id="copy-link" aria-label="Copy link">
+        <Link />
+      </button>
+    </Tooltip>
+  </div>
+
+  <p>
+    By {post.data.author} &bull; {formatDate(post.data.pubDate)} &bull; {getReadTime(post.body)}
+  </p>
+
+  <hr />
+
   <Content />
-</BlogPostLayout>
+</Layout>
+
+<script>
+  const copyButton = document.getElementById('copy-link');
+
+  copyButton?.addEventListener('click', async () => {
+    try {
+      await window.navigator.clipboard.writeText(window.location.href);
+    } catch {
+      return;
+    }
+
+    const tooltip = copyButton.parentElement?.querySelector('[role="tooltip"]');
+
+    if (tooltip) {
+      tooltip.textContent = 'Link copied!';
+    }
+
+    setTimeout(() => {
+      if (tooltip) {
+        tooltip.textContent = 'Copy link';
+      }
+    }, 2000);
+  });
+</script>
+
+<style>
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+</style>
