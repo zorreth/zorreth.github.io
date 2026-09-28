@@ -18,7 +18,8 @@ const posts = await getCollection('blog');
         </h2>
 
         <p>
-          {post.data.author} &bull; {formatDate(post.data.pubDate)} &bull; {getReadTime(post.body)}
+          By <strong>{post.data.author}</strong> &bull; {formatDate(post.data.pubDate)} &bull;{' '}
+          {getReadTime(post.body)}
         </p>
 
         <p>{post.data.description}</p>

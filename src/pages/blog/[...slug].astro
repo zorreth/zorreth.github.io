@@ -33,7 +33,8 @@ const { Content } = await render(post);
   </div>
 
   <p>
-    By {post.data.author} &bull; {formatDate(post.data.pubDate)} &bull; {getReadTime(post.body)}
+    By <strong>{post.data.author}</strong> &bull; {formatDate(post.data.pubDate)} &bull;{' '}
+    {getReadTime(post.body)}
   </p>
 
   <hr />
