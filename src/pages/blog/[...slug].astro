@@ -40,7 +40,43 @@ const { Content } = await render(post);
   <hr />
 
   <Content />
+
+  <div id="comments-container"></div>
 </Layout>
+
+<script>
+  const loadComments = () => {
+    const container = document.getElementById('comments-container');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    const script = document.createElement('script');
+    script.src = 'https://utteranc.es/client.js';
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+    script.setAttribute('repo', 'zorreth/zorreth.github.io');
+    script.setAttribute('issue-term', 'pathname');
+
+    const isDark = document.documentElement.classList.contains('dark');
+    script.setAttribute('theme', isDark ? 'github-dark' : 'github-light');
+
+    container.appendChild(script);
+  };
+
+  loadComments();
+
+  window.addEventListener('themechange', (e: Event) => {
+    const event = e as CustomEvent<{ isDark: boolean }>;
+    const theme = event.detail.isDark ? 'github-dark' : 'github-light';
+
+    const iframe = document.querySelector('.utterances-frame') as HTMLIFrameElement;
+
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage({ type: 'set-theme', theme }, 'https://utteranc.es');
+    }
+  });
+</script>
 
 <script>
   const copyButton = document.getElementById('copy-link');
@@ -71,5 +107,9 @@ const { Content } = await render(post);
     display: flex;
     align-items: center;
     gap: 1rem;
+  }
+
+  #comments-container {
+    margin-top: 2rem;
   }
 </style>
