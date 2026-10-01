@@ -11,7 +11,7 @@ export default defineConfig({
       provider: fontProviders.google(),
       name: 'Roboto Mono',
       cssVariable: '--font-mono',
-      weights: ['400', '700'],
+      weights: ['400', '600'],
     },
   ],
   integrations: [sitemap(), partytown()],
