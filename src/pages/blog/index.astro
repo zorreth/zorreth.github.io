@@ -8,9 +8,9 @@ const posts = await getCollection('blog');
 ---
 
 <Layout title="Blog" description="I'm Kirill, and this is my personal blog.">
-  <h1>Blog Posts</h1>
+  <h1 class="animate-fadein">Blog Posts</h1>
 
-  <ul class="posts">
+  <ul class="posts animate-opacity">
     {posts.map((post) => (
       <li>
         <h2>

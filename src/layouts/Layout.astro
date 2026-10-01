@@ -87,14 +87,10 @@ const { title, description } = Astro.props;
     box-sizing: border-box;
   }
 
-  html,
   body {
     margin: 0;
     padding: 0;
-    height: 100%;
-  }
-
-  body {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     padding: 4rem 8rem;
@@ -140,6 +136,76 @@ const { title, description } = Astro.props;
   .highlight {
     background-color: var(--color-bg-muted);
     transition: 0.3s background-color;
+  }
+
+  .animate-fadein {
+    position: relative;
+    width: fit-content;
+    animation: 0.8s linear animate-fadein-text;
+  }
+
+  .animate-fadein::before {
+    content: '';
+    position: absolute;
+    background-color: var(--color-link);
+    width: 100%;
+    height: 100%;
+    animation: animate-fadein 0.8s ease-in-out forwards;
+  }
+
+  .animate-opacity {
+    opacity: 0;
+    animation: animate-opacity 0.4s linear 0.8s forwards;
+  }
+
+  .delay-1 {
+    animation-delay: 1.2s;
+  }
+
+  .delay-2 {
+    animation-delay: 1.6s;
+  }
+
+  .delay-3 {
+    animation-delay: 2s;
+  }
+
+  @keyframes animate-opacity {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes animate-fadein-text {
+    0%,
+    49.9% {
+      color: transparent;
+    }
+    50% {
+      color: inherit;
+    }
+  }
+
+  @keyframes animate-fadein {
+    0% {
+      transform-origin: left;
+      transform: scaleX(0);
+    }
+    49.9% {
+      transform-origin: left;
+      transform: scaleX(1);
+    }
+    50% {
+      transform-origin: right;
+      transform: scaleX(1);
+    }
+    100% {
+      transform-origin: right;
+      transform: scaleX(0);
+    }
   }
 
   @media screen and (max-width: 1000px) {

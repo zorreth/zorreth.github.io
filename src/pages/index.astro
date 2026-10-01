@@ -10,29 +10,29 @@ import photo from '../assets/photo.jpg';
 >
   <section class="hero">
     <div class="about">
-      <h1>Hi, my name is Kirill.</h1>
+      <h1 class="animate-fadein">Hi, my name is Kirill.</h1>
 
-      <p>
+      <p class="animate-opacity">
         I am a full-stack developer, focused on building a high quality web applications of any size
         and purpose.
       </p>
 
-      <p>In my free time I do photography, make music, and speedcube.</p>
+      <p class="animate-opacity">In my free time I do photography, make music, and speedcube.</p>
     </div>
 
-    <Image src={photo} class="photo" alt="Myself" loading="eager" />
+    <Image src={photo} class="photo animate-opacity delay-1" alt="Myself" loading="eager" />
   </section>
 
   <section>
-    <h2>Experiences</h2>
+    <h2 class="animate-fadein">Experiences</h2>
 
-    <p>
+    <p class="animate-opacity delay-1">
       I worked in a team for the college projects and made some solo projects using the modern web
       development technologies like Next.js, Astro, TailwindCSS, shadcn-ui, Bun, Fastify, Hono,
       Drizzle ORM, and many more.
     </p>
 
-    <ul>
+    <ul class="animate-opacity delay-1">
       <li>
         <a href="https://zorreth.com">zorreth.com</a> – My personal website and blog.
       </li>

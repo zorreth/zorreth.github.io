@@ -23,7 +23,7 @@ const { Content } = await render(post);
   <a href="/blog">&larr; ../</a>
 
   <div class="title">
-    <h1>{post.data.title}</h1>
+    <h1 class="animate-fadein">{post.data.title}</h1>
 
     <Tooltip text="Copy link">
       <button id="copy-link" aria-label="Copy link">
@@ -32,14 +32,16 @@ const { Content } = await render(post);
     </Tooltip>
   </div>
 
-  <p>
+  <p class="animate-opacity">
     By <strong>{post.data.author}</strong> &bull; {formatDate(post.data.pubDate)} &bull;{' '}
     {getReadTime(post.body)}
   </p>
 
   <hr />
 
-  <Content />
+  <div class="animate-opacity delay-1">
+    <Content />
+  </div>
 
   <div id="comments-container"></div>
 </Layout>
