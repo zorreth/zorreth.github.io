@@ -1,17 +1,24 @@
 ---
-import { getCollection } from 'astro:content';
 import { formatDate } from '../../utils/formatDate';
 import { getReadTime } from '../../utils/getReadTime';
+import { getPosts } from '../../utils/getPosts';
 import Layout from '../../layouts/Layout.astro';
+import Tooltip from '../../components/Tooltip.astro';
+import Rss from '../../components/icons/Rss.astro';
 
-const allPosts = await getCollection('blog');
-const posts = allPosts
-  .filter((p) => !p.data.draft)
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const posts = await getPosts();
 ---
 
 <Layout title="Blog" description="I'm Kirill, and this is my personal blog.">
-  <h1 class="animate-fadein">Blog Posts</h1>
+  <div class="title">
+    <h1 class="animate-fadein">Blog Posts</h1>
+
+    <Tooltip text="RSS feed">
+      <a href="/rss.xml" class="animate-opacity delay" aria-label="RSS feed">
+        <Rss />
+      </a>
+    </Tooltip>
+  </div>
 
   <ul class="posts animate-opacity">
     {posts.map((post) => (
@@ -31,6 +38,12 @@ const posts = allPosts
 </Layout>
 
 <style>
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
   .posts {
     display: flex;
     flex-direction: column;
