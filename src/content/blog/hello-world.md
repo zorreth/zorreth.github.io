@@ -2,7 +2,6 @@
 title: 'Hello World'
 description: 'The celebration of my new website launch and discussion of what I used to build it.'
 pubDate: 2026-10-01
-author: 'Kirill Siukhin'
 ---
 
 Hi everyone, welcome to the new version of zorreth.com

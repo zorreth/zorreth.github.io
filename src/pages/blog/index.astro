@@ -4,7 +4,10 @@ import { formatDate } from '../../utils/formatDate';
 import { getReadTime } from '../../utils/getReadTime';
 import Layout from '../../layouts/Layout.astro';
 
-const posts = await getCollection('blog');
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
 <Layout title="Blog" description="I'm Kirill, and this is my personal blog.">
@@ -18,8 +21,7 @@ const posts = await getCollection('blog');
         </h2>
 
         <p>
-          By <strong>{post.data.author}</strong> &bull; {formatDate(post.data.pubDate)} &bull;{' '}
-          {getReadTime(post.body)}
+          By Kirill Siukhin &bull; {formatDate(post.data.pubDate)} &bull; {getReadTime(post.body)}
         </p>
 
         <p>{post.data.description}</p>

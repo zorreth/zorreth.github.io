@@ -8,10 +8,12 @@ import { getReadTime } from '../../utils/getReadTime';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: post,
-  }));
+  return posts
+    .filter((p) => !p.data.draft)
+    .map((post) => ({
+      params: { slug: post.id },
+      props: post,
+    }));
 }
 type Props = CollectionEntry<'blog'>;
 
@@ -33,8 +35,7 @@ const { Content } = await render(post);
   </div>
 
   <p class="animate-opacity">
-    By <strong>{post.data.author}</strong> &bull; {formatDate(post.data.pubDate)} &bull;{' '}
-    {getReadTime(post.body)}
+    By Kirill Siukhin &bull; {formatDate(post.data.pubDate)} &bull; {getReadTime(post.body)}
   </p>
 
   <hr class="animate-opacity delay-1" />
