@@ -1,10 +1,10 @@
 ---
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
+import { getPosts } from '../utils/getPosts';
 import Layout from '../layouts/Layout.astro';
 import photo from '../assets/photo.jpg';
 
-const latestPost = (await getCollection('blog')).at(0);
+const latestPost = (await getPosts()).at(0);
 ---
 
 <Layout
