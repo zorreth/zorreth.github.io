@@ -122,4 +122,4 @@ The generated text isn't always meaningful, of course. Markov chains don't under
 
 For me, this was a fun way to explore Markov chains and see how a relatively simple algorithm can produce surprisingly interesting results.
 
-See the Cheburek source code [on my GitHub](https://github.com/zorreth/cheburek).
+See the Cheburek source code [on my GitHub](https://github.com/zorreth/cheburek) and [add Cheburek to your Discord server](https://discord.com/oauth2/authorize?client_id=1203243071936929833&permissions=34816&integration_type=0&scope=bot).
