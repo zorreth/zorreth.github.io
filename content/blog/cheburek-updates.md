@@ -9,6 +9,12 @@ A few days ago I made [this post](../markov-chains) about my "new" Discord bot c
 
 In a nutshell, I built a bot that could divide messages into "words" (better - tokens), and store them using **Markov chains**. Then, a bot could create a random sequence of these tokens, using historical word usage data to create more predictible and meaningful text.
 
-As Cheburek "learns" new words and word connections, it can make a funny messages, while preservice the server's internal jokes and message style.
+As Cheburek "learns" new words and word connections, it can make a funny messages, while preserving the server's internal jokes and messaging style.
 
-Anyway, cheburek just got a huge update, and here's a post about it.
+Cheburek just got a huge update, so here's the post about it.
+
+## The Core Library
+
+I made a dedicated library for Cheburek called [cheburek-core](https://github.com/cheburek-bot/cheburek-core). Is it available on [PyPI](https://pypi.org/project/cheburek-core/), though I really need to write a better documentation for it.
+
+The core library has all the features that Cheburek has – Markov chain implementation, meme generation, storage, and more.

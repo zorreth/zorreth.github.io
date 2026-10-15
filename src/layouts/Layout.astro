@@ -68,8 +68,8 @@ const { title, description } = Astro.props;
 
 <style is:global>
   :root {
-    --color-bg: hsl(0, 0%, 95%);
-    --color-bg-muted: hsl(0, 0%, 85%);
+    --color-bg: hsl(0, 0%, 85%);
+    --color-bg-muted: hsl(0, 0%, 75%);
     --color-text: hsl(0, 0%, 0%);
     --color-link: hsl(200, 100%, 30%);
     --color-link-hover: hsl(200, 100%, 40%);
@@ -108,6 +108,9 @@ const { title, description } = Astro.props;
 
   main {
     flex: 1;
+    margin: 0 auto;
+    max-width: 70rem;
+    width: 100%;
   }
 
   a {
