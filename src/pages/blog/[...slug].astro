@@ -20,7 +20,7 @@ type Props = CollectionEntry<'blog'>;
 const post = Astro.props;
 const { Content } = await render(post);
 
-const otherPost = (await getPosts()).filter((p) => p.id !== post.id).at(0);
+const otherPosts = (await getPosts()).filter((p) => p.id !== post.id).slice(0, 3);
 ---
 
 <Layout title={post.data.title} description={post.data.description}>
@@ -48,12 +48,15 @@ const otherPost = (await getPosts()).filter((p) => p.id !== post.id).at(0);
 
   <hr class="animate-opacity delay-1" />
 
-  {otherPost && (
-    <div class="other-post animate-opacity delay-1">
-      <span>Other post:</span>
-      <a class="other-post-link" href={`/blog/${otherPost.id}`}>
-        {otherPost.data.title}
-      </a>
+  {otherPosts.length > 0 && (
+    <div class="other-posts animate-opacity delay-1">
+      <span>See other posts:</span>
+
+      {otherPosts.map((p) => (
+        <a class="other-posts-link" href={`/blog/${p.id}`}>
+          {p.data.title}
+        </a>
+      ))}
     </div>
   )}
 
@@ -135,18 +138,15 @@ const otherPost = (await getPosts()).filter((p) => p.id !== post.id).at(0);
     margin-top: 2rem;
   }
 
-  .other-post {
+  .other-posts {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
     align-items: flex-start;
     margin-top: 2rem;
-    padding: 1rem;
-    background-color: var(--color-bg-muted);
-    transition: 0.3s background-color;
   }
 
-  .other-post-link {
+  .other-posts-link {
     font-size: 1.4em;
     font-weight: 600;
   }
