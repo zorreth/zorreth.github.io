@@ -14,14 +14,14 @@
   "dependencies": {
     "@astrojs/partytown": "^2.1.9",
     "@astrojs/rss": "^4.0.19",
-    "@astrojs/sitemap": "^3.7.4",
-    "astro": "^7.4.5"
+    "@astrojs/sitemap": "^3.7.5",
+    "astro": "^7.4.12"
   },
   "allowScripts": {
     "esbuild": true
   },
   "devDependencies": {
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "prettier-plugin-astro": "^1.1.2"
   }
 }
